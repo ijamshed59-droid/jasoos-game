@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6558e8" />
+  <meta name="description" content="جاسوس — دوستوں کے ساتھ کھیلیں، اشارے دیں اور جاسوس کو پہچانیں۔" />
+  <title>جاسوس | Jasoos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="background-orb orb-one"></div><div class="background-orb orb-two"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">🕵️</div>
+      <div><div class="brand-title">جاسوس</div><div class="brand-subtitle">دوستوں میں چھپا کون ہے؟</div></div>
+      <button id="soundToggle" class="icon-button" aria-label="آواز آن یا آف کریں" title="آواز">🔊</button>
+    </header>
+    <div id="notice" class="notice hidden" role="status"></div>
+    <section id="homeScreen" class="screen">
+      <div class="hero-card">
+        <div class="hero-bubble">🎭</div>
+        <p class="eyebrow">دوستوں کے ساتھ کھیلیں</p>
+        <h1>کیا آپ جاسوس کو<br><span>پہچان سکتے ہیں؟</span></h1>
+        <p class="hero-copy">سب کو ایک خفیہ لفظ ملے گا، مگر ایک کھلاڑی جاسوس ہوگا۔ اشارے دیں، ووٹ کریں اور جاسوس کو پکڑیں!</p>
+        <div class="hero-stats"><span>👥 ۳–۸ کھلاڑی</span><span>⚡ لائیو گیم</span><span>📱 موبائل فرینڈلی</span></div>
+      </div>
+      <div class="panel">
+        <label for="playerName">آپ کا نام</label>
+        <input id="playerName" maxlength="18" placeholder="مثلاً احمد" autocomplete="nickname" />
+        <button id="createRoom" class="primary-button">＋ نیا کمرہ بنائیں</button>
+        <div class="or-divider"><span>یا کمرے میں شامل ہوں</span></div>
+        <div class="join-row"><input id="roomCodeInput" class="code-input" maxlength="4" placeholder="ABCD" aria-label="چار حرفی کمرہ کوڈ" dir="ltr"/><button id="joinRoom" class="secondary-button">شامل ہوں</button></div>
+      </div>
+      <button id="howToOpen" class="how-link">❔ کھیلنے کا طریقہ</button>
+    </section>
+    <section id="howScreen" class="screen hidden">
+      <div class="section-heading"><button class="back-button" data-back>←</button><div><p class="eyebrow">آسان ہے!</p><h2>کھیلنے کا طریقہ</h2></div></div>
+      <div class="rule-list">
+        <article class="rule-card"><div class="rule-icon purple">1</div><div><h3>لفظ دیکھیں</h3><p>ہر کھلاڑی کو ایک خفیہ لفظ ملے گا۔ جاسوس کو صرف بتایا جائے گا کہ وہ جاسوس ہے۔</p></div></article>
+        <article class="rule-card"><div class="rule-icon orange">2</div><div><h3>ایک لفظ کا اشارہ دیں</h3><p>اپنی باری پر ایک لفظ بولیں یا لکھیں۔ ایسا اشارہ دیں کہ دوست سمجھیں مگر جاسوس لفظ نہ جان سکے۔</p></div></article>
+        <article class="rule-card"><div class="rule-icon teal">3</div><div><h3>خفیہ ووٹ دیں</h3><p>سب ووٹ کریں کہ جاسوس کون ہے۔ ووٹ مکمل ہونے پر نتیجہ سامنے آئے گا۔</p></div></article>
+        <article class="rule-card"><div class="rule-icon pink">4</div><div><h3>آخری اندازہ</h3><p>اگر جاسوس پکڑا گیا تو اسے لفظ کا آخری اندازہ لگانے کا موقع ملے گا۔ صحیح جواب پر جاسوس جیت جائے گا!</p></div></article>
+      </div>
+      <button class="primary-button" data-back>سمجھ گیا، کھیلیں!</button>
+    </section>
+    <section id="lobbyScreen" class="screen hidden">
+      <div class="section-heading"><div><p class="eyebrow">کمرہ تیار ہے</p><h2>دوستوں کو بلائیں</h2></div><span class="pill live-pill">● لائیو</span></div>
+      <div class="room-code-card"><span>کمرے کا کوڈ</span><div id="roomCodeDisplay" class="room-code">----</div><button id="copyCode" class="copy-button">▣ کوڈ کاپی کریں</button><p>یہ کوڈ دوستوں کو بھیجیں</p></div>
+      <div class="players-heading"><h3>کھلاڑی <span id="playerCount">0/8</span></h3><span class="small-muted">کم از کم ۳ درکار</span></div>
+      <div id="lobbyPlayers" class="player-list"></div>
+      <div id="hostLobbyActions"><button id="startGame" class="primary-button" disabled>🎲 کھیل شروع کریں</button><p class="small-muted center">صرف میزبان کھیل شروع کر سکتا ہے۔</p></div>
+      <div id="guestLobbyNote" class="waiting-note hidden">⏳ میزبان کے کھیل شروع کرنے کا انتظار کریں…</div>
+      <button id="leaveRoom" class="text-button">کمرے سے نکلیں</button>
+    </section>
+    <section id="gameScreen" class="screen hidden">
+      <div class="game-topline"><span class="pill" id="roundPill">راؤنڈ ۱</span><span class="pill" id="categoryPill">زمرہ</span><span class="connection-state" id="connectionState">● منسلک</span></div>
+      <div id="roleCard" class="role-card"><div id="roleEmoji" class="role-emoji">🔐</div><p id="roleLabel" class="eyebrow">آپ کا خفیہ کردار</p><h2 id="roleTitle">آپ کا لفظ</h2><div id="secretWord" class="secret-word">—</div><p id="roleHelp" class="role-help">لفظ کسی کو نہ دکھائیں!</p></div>
+      <div id="turnBanner" class="turn-banner hidden"></div>
+      <div id="hintArea" class="panel hidden"><div class="section-title-row"><h3>💬 اشاروں کی باری</h3><span id="hintProgress" class="small-muted"></span></div><div id="hintFeed" class="hint-feed"></div><div id="hintForm" class="input-action-row"><input id="hintInput" maxlength="18" placeholder="ایک لفظ لکھیں…"/><button id="sendHint" class="primary-button compact">بھیجیں</button></div><p id="hintFootnote" class="small-muted">صرف ایک لفظ لکھیں۔</p></div>
+      <div id="votingArea" class="panel hidden"><h3>🗳️ آپ کے خیال میں جاسوس کون ہے؟</h3><p class="small-muted">آپ کا ووٹ خفیہ رہے گا۔</p><div id="voteChoices" class="vote-choices"></div><div id="voteStatus" class="waiting-note hidden">آپ کا ووٹ محفوظ ہو گیا۔ باقی ووٹوں کا انتظار کریں…</div></div>
+      <div id="spyGuessArea" class="panel hidden"><h3>🎯 آخری موقع!</h3><p>جاسوس پکڑا گیا ہے۔ کیا آپ خفیہ لفظ جانتے ہیں؟</p><input id="spyGuessInput" placeholder="اپنا اندازہ لکھیں…" maxlength="40"/><button id="submitGuess" class="primary-button">اندازہ لگائیں</button></div>
+      <div id="resultArea" class="panel hidden"><div id="resultEmoji" class="result-emoji">🏆</div><h2 id="resultTitle">نتیجہ</h2><p id="resultMessage"></p><div id="voteBreakdown" class="vote-breakdown"></div><div class="result-word">خفیہ لفظ: <strong id="resultWord">—</strong></div><h3>🏅 اسکور بورڈ</h3><div id="scoreboard" class="player-list"></div><button id="nextRound" class="primary-button">اگلا راؤنڈ</button><p id="nextRoundNote" class="small-muted center hidden">میزبان اگلا راؤنڈ شروع کرے گا۔</p></div>
+      <button id="backToLobby" class="text-button hidden">کمرے کی فہرست</button>
+    </section>
+    <footer><span>JASOOS</span><span>دوستی، اشارے اور تھوڑا سا شک 😏</span></footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
